@@ -24,7 +24,7 @@ class CodeTunnel < Formula
   end
 
   service do
-    run [opt_bin/"code-tunnel-svc"]
+    run [opt_bin/"code-tunnel-svc", "--name", "mac-mini"]
     keep_alive true
     restart_delay 10
     log_path var/"log/code-tunnel.log"
