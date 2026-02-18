@@ -3,7 +3,7 @@ class CodeTunnel < Formula
   homepage "https://code.visualstudio.com/docs/remote/tunnels"
   url "file:///dev/null"
   sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-  version "1.1.0"
+  version "1.1.1"
 
   depends_on :macos
 
