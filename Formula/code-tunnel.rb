@@ -5,8 +5,6 @@ class CodeTunnel < Formula
   sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   version "1.0.0"
 
-  bottle :unneeded
-
   def install
     code_tunnel = "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code-tunnel"
     odie "VS Code not found at: #{code_tunnel}" unless File.exist?(code_tunnel)
