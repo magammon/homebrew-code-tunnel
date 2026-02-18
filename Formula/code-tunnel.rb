@@ -3,7 +3,9 @@ class CodeTunnel < Formula
   homepage "https://code.visualstudio.com/docs/remote/tunnels"
   url "file:///dev/null"
   sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-  version "1.0.0"
+  version "1.1.0"
+
+  depends_on :macos
 
   def install
     code_tunnel = "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code-tunnel"
@@ -11,7 +13,12 @@ class CodeTunnel < Formula
 
     (bin/"code-tunnel-svc").write <<~BASH
       #!/bin/bash
-      exec "#{code_tunnel}" tunnel --accept-server-license-terms "$@"
+      code_tunnel="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code-tunnel"
+      if [ ! -f "$code_tunnel" ]; then
+        echo "error: VS Code not found at: $code_tunnel" >&2
+        exit 1
+      fi
+      exec "$code_tunnel" tunnel --accept-server-license-terms "$@"
     BASH
     chmod 0755, bin/"code-tunnel-svc"
   end
@@ -24,6 +31,11 @@ class CodeTunnel < Formula
     error_log_path var/"log/code-tunnel-error.log"
     working_dir Dir.home
     environment_variables HOME: Dir.home, PATH: "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+  end
+
+  test do
+    assert_predicate bin/"code-tunnel-svc", :exist?
+    assert_predicate bin/"code-tunnel-svc", :executable?
   end
 
   def caveats
