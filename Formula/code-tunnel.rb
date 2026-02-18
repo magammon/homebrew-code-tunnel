@@ -31,9 +31,9 @@ class CodeTunnel < Formula
   def caveats
     <<~EOS
       Manage the tunnel service:
-        brew services start  michaelgumn/code-tunnel/code-tunnel
-        brew services stop   michaelgumn/code-tunnel/code-tunnel
-        brew services restart michaelgumn/code-tunnel/code-tunnel
+        brew services start   magammon/code-tunnel/code-tunnel
+        brew services stop    magammon/code-tunnel/code-tunnel
+        brew services restart magammon/code-tunnel/code-tunnel
 
       View logs:
         tail -f #{var}/log/code-tunnel.log
